@@ -1,7 +1,6 @@
 # Asymptotik – Lage und Art der Singularität – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-asymptotik-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-asymptotik-demo.streamlit.app/)**
 
 Stück 9 von 16 der Reihe **„Abzählen und erzeugende Funktionen“** in der „Konzepte“-Reihe für die Website „Sebastian Hanisch – Operations Research und Machine Learning“ (die Linie wird erst vollständig veröffentlicht). Vorgänger sind `aufzaehlen-rekursion-demo` (Stück 1), `rationale-ef-demo` (Stück 2), `symbolische-methode-demo` (Stück 3), `semiring-rekursion-demo` (Stück 4), `multimengen-partitionen-demo` (Stück 5), `beschriftete-strukturen-demo` (Stück 6), `siebformel-demo` (Stück 7) und `zaehlen-nach-parameter-demo` (Stück 8); sie haben **exakte Zahlen** geliefert. Diese Demo fragt, **wie schnell diese Zahlen wachsen** und **wie gut eine Näherung ist**: Die **nächste Singularität** ρ der erzeugenden Funktion bestimmt die **Wachstumsrate** 1/ρ, ihre **Art** (Wurzel oder Pol) den **polynomiellen Faktor**, und das Gleichungssystem aus Stück 3 liefert die **Konstante**. Der **Transfersatz** macht daraus c(n) ≈ γ/(2√π)·ρ⁻ⁿ·n^(−3/2); der Fehler fällt wie 1/n und wird gemessen. Der Quotient c(n+1)/c(n) ist eine schlechte Schätzung der Rate; die **Richardson-Extrapolation** verbessert sie um eine Ordnung. Bei den Bell-Zahlen und den Partitionen gibt es **keine Rate**, und die Demo zeigt, woran man das sieht.
 
@@ -125,4 +124,4 @@ Gebaut mit Streamlit, Plotly und fpdf2.
 
 ---
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Abzählen: von der Rekursion zur Verfahrenswahl](https://sebastianhanisch.net/konzepte-abzaehlen.html).
