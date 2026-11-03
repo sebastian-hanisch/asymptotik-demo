@@ -100,7 +100,7 @@ def test_all_families_agree_between_their_ways_at_every_grid_size():
 
 def test_quotient_classes_order():
     rows = {r["Folge"]: r for r in ev.class_rows()}
-    bell = rows["Bell-Zahlen (ganze Funktion)"]
+    bell = rows["Bell-Zahlen (exponentielle Reihe ganz)"]
     part = rows["Partitionen (wesentliche Singularität)"]
     assert bell["n = 10"] < bell["n = 100"] < bell["n = 1000"]
     assert part["n = 10"] > part["n = 100"] > part["n = 1000"] > 1

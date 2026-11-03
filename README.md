@@ -11,13 +11,13 @@ Wer plant, muss wissen, ob ein Verfahren, das alle Möglichkeiten durchgeht, bei
 
 ## Befunde und Korrekturen gegenüber dem Plan
 
-- **Hook bestätigt:** Catalan-Zahl C₁₀₀ gegen 4ⁿ/(√π·n^(3/2)): der Näherungsfehler ist 9/(8n) = 1,1263 % (n mal Fehler 1,1263 → 1,125); mit dem Korrekturfaktor (1 + B/n), B = −9/8, bleiben −0,011 %.
+- **Hook bestätigt:** Catalan-Zahl C₁₀₀ gegen 4ⁿ/(√π·n^(3/2)): der Näherungsfehler ist rund 9/(8n) ≈ 1,125 %, gemessen 1,1263 % (n mal Fehler 1,1263 → 1,125); mit dem Korrekturfaktor (1 + B/n), B = −9/8, bleiben −0,011 %.
 - **Die Korrekturkonstante wird gemessen, nicht bewiesen:** B = −9/8 (Catalan), −39/16 (Motzkin), −1/8 (zentraler Binomialkoeffizient), −1/12 (beschriftete Wurzelbäume) stehen als Werte aus dem Gedächtnis (Literatur nicht eingesehen) im Code und werden von der Messung n·Fehler (1,1251 / 2,4412 / 0,1250 / 0,0833 bei n = 1000 beziehungsweise 200) bestätigt.
 - **Behauptung im Preset-Text korrigiert:** Der erste Entwurf des Standard-Presets sagte „unter 0,01 %“. Gemessen sind **0,01134 %**; der Text sagt jetzt „bei 0,011 %“. Der Test `test_preset_help_claims` hält das fest.
 - **Quotient allein ist schlecht, Richardson viel besser:** Catalan n = 100: Quotient 3,9412 (Fehler 0,0588), Richardson 3,9989 (Fehler 1,1·10⁻³); beim Verdoppeln von n sinkt der Fehler des Quotienten um den Faktor 1,96 bis 1,99 (Ordnung 1), der Richardson-Schätzung um 3,81 bis 3,95 (Ordnung 2).
 - **Wurzelbäume ohne Reihenfolge (Otter):** keine algebraische Gleichung; die Wachstumskonstante wird aus den Zahlen geschätzt (Richardson bei n = 600: 2,9558, Exponent −1,4941) und die Konstante K bei n/2 angepasst, nicht berechnet. Das sagt die Antwort der App.
-- **Entartete Eingaben der Spielwiese:** F = 1 + z²·F² (nur Terme mit z²) ist periodisch (Periode 2), der Quotient c(n+1)/c(n) ist dort 0; die App meldet das, rechnet aber nicht weiter. Mit c₂ = c₃ = 0 ist die Gleichung linear (Pol statt Wurzel).
-- **Grenzen sind kein Fehler der Rechnung:** Bell-Zahlen (ganze Funktion) und Partitionen (wesentliche Singularität) haben keine Rate: der Quotient wächst (107,07 bei n = 500, etwa das 1,33-fache von n/ln n) beziehungsweise fällt gegen 1 (1,0403 bei n = 1000).
+- **Entartete Eingaben der Spielwiese:** F = 1 + z²·F² (nur Terme mit z²) ist periodisch (Periode 2), der Quotient c(n+1)/c(n) ist dort abwechselnd 0 und nicht definiert (Division durch 0); die App meldet das, rechnet aber nicht weiter. Mit c₂ = c₃ = 0 ist die Gleichung linear (Pol statt Wurzel).
+- **Grenzen sind kein Fehler der Rechnung:** Bell-Zahlen (exponentielle erzeugende Funktion ganz) und Partitionen (wesentliche Singularität) haben keine Rate: der Quotient wächst (107,07 bei n = 500, etwa das 1,33-fache von n/ln n, ohne festen Grenzwert dieses Verhältnisses) beziehungsweise fällt gegen 1 (1,0403 bei n = 1000).
 - **Präfix:** `asy_`, Port 9322 wie geplant.
 - **Eigene Fehler im Entwurf (nicht im Code):** In der ersten Fassung des Phase-0-Skripts hatte ich das Vorzeichen des Exponenten für negative a vertauscht; das Richardson-Verfahren hat bei zu kurzer Folge einen Indexfehler geworfen (jetzt +2 Reserve); eine Gleitkommazahl lief beim Diagramm über (jetzt Ganzzahldivision). Alle drei sind behoben und getestet.
 
@@ -43,7 +43,7 @@ Jede Zahl steht in `tests/test_claims.py`, `tests/test_algorithm.py`, `tests/tes
 | Weitere Wurzelfälle | Motzkin n = 200: ρ = 1/3, Fehler 1,2206 %, n mal Fehler 2,4412 (B = −39/16 = −2,4375); zentraler Binomialkoeffizient n = 500: Exponent −1/2, n mal Fehler 0,1250; beschriftete Wurzelbäume n = 1000: ρ = 1/e, n mal Fehler 0,0833 |
 | Doppelter Pol 1/(1 − z − z²)², n = 300 | Exponent 1; Näherung −0,5149 % daneben, n(r/φ − 1) = 0,9949 |
 | Wurzelbäume ohne Reihenfolge | n = 400: Richardson-Rate 2,955733, Exponent −1,4912, Näherung −0,8387 % daneben; n = 600: Rate 2,9558, Exponent −1,4941; C₁₀₀₀ hat 598 Stellen, B₁₀₀₀ (Bell) hat 1928 |
-| Keine Rate | Bell n = 500: Quotient 107,07, etwa 1,33·n/ln n; Partitionen n = 1000: Quotient 1,0403, Hardy–Ramanujan 1,42 % zu hoch (Fehler mal √n = 0,448); p(10) = 42 gegen 48,06 |
+| Keine Rate | Bell n = 500: Quotient 107,07, etwa 1,33·n/ln n; Partitionen n = 1000: Quotient 1,0403, Hardy–Ramanujan 1,42 % zu hoch (Fehler mal √n = 0,448); p(10) = 42 gegen 48,10 |
 | Experiment 2: Transfersatz, n·Fehler bei n = 1000 | a = 0,5: −0,125; a = −0,5: 0,375; a = 1,5: 0,375; a = 2: 1,000; a = 3: 3,002 (a(a−1)/2 = −0,125 / 0,375 / 0,375 / 1 / 3); höchste Abweichung 0,0020 |
 | Experiment 3: Rate Catalan, n = 50, 100, 200, 400 | Fehler des Quotienten 0,1154, 0,0588, 0,0297, 0,0149; Richardson 4,35·10⁻³, 1,14·10⁻³, 2,93·10⁻⁴, 7,41·10⁻⁵ (bei n = 400 etwa 202-mal genauer) |
 | Experiment 4: 24 Zufallsgleichungen | mittlerer Fehler des führenden Terms bei n = 50, 100, 200: 2,25 %, 1,12 %, 0,56 % (größter 2,17 % bei n = 200); mittlerer Quotientenfehler bei n = 200 0,0074 (≈ 3/(2n) = 0,0075) |

@@ -46,6 +46,6 @@ PRESET_HELP = {
     "Doppelter Pol: 1/(1 − z − z²)², n = 300": "Zwei gleiche Pole: c(n) wächst wie n·φⁿ; der Exponent n(r/φ − 1) strebt gegen 1.",
     "Wurzelbäume ohne Reihenfolge, n = 400": "Keine algebraische Gleichung: Wachstumskonstante und Konstante der Näherung werden aus den Zahlen geschätzt (Richardson), der Exponent −3/2 aus der Theorie.",
     "Beschriftete Wurzelbäume, n = 1000": "nⁿ⁻¹/n! gegen eⁿ/(√(2π)·n^(3/2)) (Stirling): Fehler 1/(12n).",
-    "Bell-Zahlen: keine Rate, n = 500": "Die Quotienten B(n+1)/B(n) wachsen ohne Grenze: es gibt keine Wachstumsrate und keine Singularität im Endlichen.",
+    "Bell-Zahlen: keine Rate, n = 500": "Die Quotienten B(n+1)/B(n) wachsen ohne Grenze: es gibt keine Wachstumsrate; die exponentielle erzeugende Funktion exp(eᶻ−1) hat keine Singularität im Endlichen.",
     "Partitionen: Hardy–Ramanujan, n = 1000": "Der Quotient strebt gegen 1 (subexponentiell); der führende Term exp(π√(2n/3))/(4n√3) liegt 1,4 % zu hoch.",
 }

@@ -60,7 +60,7 @@ def test_spec_verdict_exact():
     kind, text = ev.verdict_spec(ev.spec_experiment())
     assert kind == "success"
     assert text == ("Bei 24 zufälligen Gleichungen trifft der führende Term γ/(2√π)·ρ⁻ⁿ·n^(−3/2) aus dem System bei n = 200 im Mittel auf 0,56 % (größter Fehler 2,17 %); der Fehler halbiert sich mit n. "
-                    "Der einfache Quotient hat bei n = 200 bei allen Gleichungen den Fehler 0,0074 (≈ 3/(2n) = 0,0075), die Richardson-Schätzung im Mittel 7,3·10⁻⁵.")
+                    "Der einfache Quotient hat bei n = 200 im Mittel den relativen Fehler 0,0074 (≈ 3/(2n) = 0,0075), die Richardson-Schätzung im Mittel 7,3·10⁻⁵.")
 
 
 def test_class_verdict_exact():

@@ -43,7 +43,7 @@ def family_info(family: str, m: int = 1) -> FamilyInfo:
     if family == "Beschriftete Wurzelbäume":
         return FamilyInfo(family, "Wurzelsingularität", -1.5, 1 / math.e, 1 / math.sqrt(2 * math.pi), Fraction(-1, 12), True)
     if family == "Bell-Zahlen":
-        return FamilyInfo(family, "keine Rate: ganze Funktion, der Quotient wächst", None, None, None, None, False)
+        return FamilyInfo(family, "keine Rate: exponentielle erzeugende Funktion ganz, der Quotient wächst", None, None, None, None, False)
     return FamilyInfo(family, "keine Rate: wesentliche Singularität, der Quotient strebt gegen 1", None, None, None, None, False)
 
 

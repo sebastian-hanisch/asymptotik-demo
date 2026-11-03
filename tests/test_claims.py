@@ -98,7 +98,7 @@ def test_readme_spec_experiment():
 def test_readme_classes_and_wrong_exponent():
     rows = {r["Folge"]: r for r in ev.class_rows()}
     assert [round(rows["Catalan (Wurzelsingularität)"][f"n = {n}"], 3) for n in C.CLASS_NS] == [3.5, 3.941, 3.994]
-    assert [round(rows["Bell-Zahlen (ganze Funktion)"][f"n = {n}"], 1) for n in C.CLASS_NS] == [5.9, 29.6, 190.6]
+    assert [round(rows["Bell-Zahlen (exponentielle Reihe ganz)"][f"n = {n}"], 1) for n in C.CLASS_NS] == [5.9, 29.6, 190.6]
     assert [round(rows["Partitionen (wesentliche Singularität)"][f"n = {n}"], 3) for n in C.CLASS_NS] == [1.333, 1.125, 1.040]
     assert [round(rows["n! (Fakultät)"][f"n = {n}"], 1) for n in C.CLASS_NS] == [11.0, 101.0, 1001.0]
     wrong = {r["Exponent"]: round(r["Vorhersage / exakt"], 3) for r in ev.wrong_exponent_rows()}

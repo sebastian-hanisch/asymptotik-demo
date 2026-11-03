@@ -254,7 +254,7 @@ def verdict_answers(a: Analysis):
         if info.name == "Bell-Zahlen":
             r_ratio = a.quotient / (n / math.log(n))
             return "warning", (f"Bell-Zahlen: keine Wachstumsrate. Der Quotient B(n+1)/B(n) ist bei n = {n} schon {de(a.quotient, 2)} und wächst weiter (etwa das {de(r_ratio, 2)}-fache von n/ln n); "
-                               "die erzeugende Funktion ist überall konvergent und hat keine Singularität im Endlichen. Dafür braucht man die Sattelpunktmethode.")
+                               "die exponentielle erzeugende Funktion exp(eᶻ−1) ist überall konvergent und hat keine Singularität im Endlichen (die gewöhnliche Reihe der Bell-Zahlen hat den Konvergenzradius 0). Dafür braucht man die Sattelpunktmethode.")
         e = a.error
         return "warning", (f"Partitionen: keine Wachstumsrate. Der Quotient p(n+1)/p(n) ist bei n = {n} {de(a.quotient, 4)} und strebt gegen 1 (subexponentiell). "
                            f"Der führende Term von Hardy und Ramanujan exp(π√(2n/3))/(4n√3) liegt {percent(e, 2)} über dem exakten Wert (Fehler mal √n ≈ {de(e * math.sqrt(n), 3)}); "
@@ -364,14 +364,14 @@ def verdict_spec(res: dict):
     if not all(rows[i]["mittlerer Fehler"] > rows[i + 1]["mittlerer Fehler"] for i in range(len(rows) - 1)):
         return "warning", "Der mittlere Fehler des führenden Terms fällt nicht bei allen n."
     return "success", (f"Bei {len(res['specs'])} zufälligen Gleichungen trifft der führende Term γ/(2√π)·ρ⁻ⁿ·n^(−3/2) aus dem System bei n = {last['n']} im Mittel auf {percent(last['mittlerer Fehler'], 2)} (größter Fehler {percent(last['größter Fehler'], 2)}); "
-                       f"der Fehler halbiert sich mit n. Der einfache Quotient hat bei n = {n} bei allen Gleichungen den Fehler {de(mean_plain, 4)} (≈ 3/(2n) = {de(1.5 / n, 4)}), die Richardson-Schätzung im Mittel {sci_text(mean_rich, 2)}.")
+                       f"der Fehler halbiert sich mit n. Der einfache Quotient hat bei n = {n} im Mittel den relativen Fehler {de(mean_plain, 4)} (≈ 3/(2n) = {de(1.5 / n, 4)}), die Richardson-Schätzung im Mittel {sci_text(mean_rich, 2)}.")
 
 
 # ----------------------------------------------------------------------------- Experiment 5: Wachstumsklassen und falscher Exponent
 
 def class_rows() -> list[dict]:
     top = max(C.CLASS_NS) + 1
-    seqs = {"Catalan (Wurzelsingularität)": A.catalan(top), "Fibonacci (Pol)": A.fibonacci_pole(1, top), "Bell-Zahlen (ganze Funktion)": A.bell(top),
+    seqs = {"Catalan (Wurzelsingularität)": A.catalan(top), "Fibonacci (Pol)": A.fibonacci_pole(1, top), "Bell-Zahlen (exponentielle Reihe ganz)": A.bell(top),
             "Partitionen (wesentliche Singularität)": A.partitions(top), "n! (Fakultät)": [math.factorial(k) for k in range(top + 1)]}
     rows = []
     for name, seq in seqs.items():
@@ -385,7 +385,7 @@ def class_rows() -> list[dict]:
 def class_verdict(rows: list[dict]):
     by = {r["Folge"]: r for r in rows}
     ns = [f"n = {n}" for n in C.CLASS_NS]
-    cat, bell, part = by["Catalan (Wurzelsingularität)"], by["Bell-Zahlen (ganze Funktion)"], by["Partitionen (wesentliche Singularität)"]
+    cat, bell, part = by["Catalan (Wurzelsingularität)"], by["Bell-Zahlen (exponentielle Reihe ganz)"], by["Partitionen (wesentliche Singularität)"]
     return "warning", (f"Der Quotient c(n+1)/c(n) verrät die Klasse: Catalan strebt gegen 4 ({de(cat[ns[0]], 2)}, {de(cat[ns[1]], 3)}, {de(cat[ns[2]], 3)}), die Bell-Zahlen wachsen ohne Grenze ({de(bell[ns[0]], 1)}, {de(bell[ns[1]], 1)}, {de(bell[ns[2]], 1)}), "
                        f"die Partitionen fallen gegen 1 ({de(part[ns[0]], 3)}, {de(part[ns[1]], 3)}, {de(part[ns[2]], 3)}). Eine Wachstumsrate gibt es nur im ersten Fall.")
 
@@ -444,7 +444,7 @@ def verdict_play(res: dict):
     if res["kind"] == "trivial":
         return "info", "Alle Koeffizienten sind 0: F = 1, es gibt nur die leere Struktur (keine Singularität, nichts wächst)."
     if res["kind"] == "periodic":
-        return "warning", ("Die Gleichung hat nur Terme mit z²: es kommen nur gerade Größen vor (Periode 2, Stück 3). Der Quotient c(n+1)/c(n) ist dann 0; die App rechnet die Asymptotik für aperiodische Gleichungen "
+        return "warning", ("Die Gleichung hat nur Terme mit z²: es kommen nur gerade Größen vor (Periode 2, Stück 3). Der Quotient c(n+1)/c(n) ist dann abwechselnd 0 und nicht definiert; die App rechnet die Asymptotik für aperiodische Gleichungen "
                            "(mindestens ein Term mit z¹).")
     if res["kind"] == "pole":
         mu = int(res["mu"])

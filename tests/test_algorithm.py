@@ -108,5 +108,5 @@ def test_predict_with_exponent_is_exact_when_fit_equals_target():
 
 
 def test_hardy_ramanujan_hand():
-    # n = 10: exp(π·√(20/3)) / (40·√3) = exp(8,1103) / 69,28 ≈ 3329,5 / 69,28 ≈ 48,06 gegen p(10) = 42
+    # n = 10: exp(π·√(20/3)) / (40·√3) = exp(8,1117) / 69,28 ≈ 3332,8 / 69,28 ≈ 48,10 gegen p(10) = 42
     assert math.exp(A.hardy_ramanujan_log(10)) == pytest.approx(48.1, abs=0.2)

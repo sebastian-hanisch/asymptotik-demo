@@ -88,10 +88,10 @@ with st.container(key="kopf"):
     st.title("📈 Asymptotik – Lage und Art der Singularität")
 st.markdown(
     """
-**Wie schnell wächst die Zahl, und wie gut ist die Näherung?** Die erzeugende Funktion verrät es, ohne die Zahlen zu rechnen: Die **nächste Singularität** $\\rho$ (der Punkt, an dem die Reihe nicht mehr konvergiert) bestimmt die
+**Wie schnell wächst die Zahl, und wie gut ist die Näherung?** Die erzeugende Funktion verrät es bei algebraischen Gleichungen und rationalen Reihen, ohne die Zahlen zu rechnen (bei den Wurzelbäumen ohne Reihenfolge wird die Rate aus den Zahlen geschätzt): Die **nächste Singularität** $\\rho$ (der Punkt, an dem die Reihe nicht mehr konvergiert) bestimmt die
 **Wachstumsrate** $1/\\rho$, ihre **Art** den **polynomiellen Faktor** (Wurzel: $n^{-3/2}$, Pol der Vielfachheit $m$: $n^{m-1}$), und das **Gleichungssystem** aus Stück 3 liefert die **Konstante**. Der **Transfersatz** macht daraus
 $[z^n] F \\sim \\frac{\\gamma}{2\\sqrt{\\pi}}\\, \\rho^{-n} n^{-3/2}$. Der Fehler der Näherung fällt wie $1/n$ und ist messbar; der Quotient allein ist eine schlechte Schätzung der Rate, mit **Richardson-Extrapolation** wird er viel besser.
-Und nicht jede Reihe hat eine Rate: bei ganzen Funktionen (Bell-Zahlen) und wesentlichen Singularitäten (Partitionen) wächst der Quotient ohne Grenze beziehungsweise fällt gegen 1.
+Und nicht jede Reihe hat eine Rate: bei den Bell-Zahlen (exponentielle erzeugende Funktion ganz) und den Partitionen (wesentliche Singularität) wächst der Quotient ohne Grenze beziehungsweise fällt gegen 1.
 
 Weiter unten: **fünf Experimente** (**🔬**), eine **🎲 Spielwiese**, **🚧 Wo die Annahmen enden** und der Expander **📐 Mathematische Formulierung**.
 """
@@ -234,11 +234,11 @@ st.markdown(
     f"""
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
-| **Nächste Singularität vom Wurzel- oder Poltyp** | Bei ganzen Funktionen (Bell-Zahlen) und wesentlichen Singularitäten (Partitionen) gibt es keine Rate; der Quotient wächst beziehungsweise fällt gegen 1 (Experiment 5). Sattelpunkt- und Kreismethode sind eigene Verfahren. | – |
-| **Es gibt genau eine dominante Singularität** | Perioden (zum Beispiel nur gerade Größen) haben mehrere Singularitäten auf dem Rand; der Quotient ist dann 0 und die Näherung gilt nur mit Schritt p (Stück 3). Die Spielwiese meldet das. | Stück 3 |
-| **Der Exponent stimmt** | Mit dem falschen Exponent liegt die Vorhersage um den Faktor 10 oder mehr daneben (Experiment 5). Die App kennt −3/2 (Wurzel), −1/2 (Wurzel im Nenner) und m − 1 (Pol). | – |
+| **Nächste Singularität vom Wurzel- oder Poltyp** | Bei den Bell-Zahlen (exponentielle erzeugende Funktion ganz) und den Partitionen (wesentliche Singularität) gibt es keine Rate; der Quotient wächst beziehungsweise fällt gegen 1 (Experiment 5). Sattelpunkt- und Kreismethode sind eigene Verfahren. | – |
+| **Es gibt genau eine dominante Singularität** | Perioden (zum Beispiel nur gerade Größen) haben mehrere Singularitäten auf dem Rand; der Quotient ist dann abwechselnd 0 und nicht definiert, und die Näherung gilt nur mit Schritt p (Stück 3). Die Spielwiese meldet das. | Stück 3 |
+| **Der Exponent stimmt** | Ein um 1 falscher Exponent verfälscht die Vorhersage von n = 100 auf n = 1000 um etwa den Faktor 10, kleinere Fehler im Exponenten entsprechend weniger (Experiment 5). Die App kennt −3/2 (Wurzel), −1/2 (Wurzel im Nenner) und m − 1 (Pol). | – |
 | **Die Konstante ist aus dem System ablesbar** | Bei den Wurzelbäumen ohne Reihenfolge ist die Gleichung nicht algebraisch: die Konstante wird angepasst (bei n/2), nicht berechnet. | – |
-| **Der Fehler fällt wie 1/n** | Gemessen bis n = {C.N_MAX}; die Konstante B des nächsten Terms ist bei Catalan, Motzkin, zentralem Binomialkoeffizienten und beschrifteten Bäumen bekannt, sonst nicht. | – |
+| **Der Fehler fällt wie 1/n** | Gemessen bis n = {C.N_MAX}; die Konstante B des nächsten Terms ist bei Catalan, Motzkin, zentralem Binomialkoeffizienten und beschrifteten Bäumen aus dem Gedächtnis angesetzt und von der Messung bestätigt, sonst nicht bekannt; bei den Partitionen fällt der Fehler wie 1/√n. | – |
 | **Gleitkomma genügt** | Die Logarithmen großer Zahlen sind auf etwa 15 Stellen genau; Fehler unter 10⁻¹⁵ sind Rundung. Die exakten Zahlen selbst sind ganz oder Brüche. | – |
 | **Die Größe ist begrenzt** | Wurzelbäume ohne Reihenfolge bis n = {C.N_CAP['Wurzelbäume ohne Reihenfolge']}, die eigene Gleichung bis n = {C.PLAY_N_MAX}, sonst bis n = {C.N_MAX}; darüber wird gekappt und das gesagt. | – |
 """
@@ -249,7 +249,7 @@ st.markdown("---")
 with st.expander("📐 Mathematische Formulierung"):
     st.markdown(
         r"""
-**Wachstumsrate und Exponent.** Hat die erzeugende Funktion $F(z) = \sum c_n z^n$ mit nichtnegativen Koeffizienten die nächste Singularität bei $\rho > 0$, so wächst $c_n$ wie $\rho^{-n}$ (bis auf subexponentielle Faktoren), und es gilt $c_n \approx A\, \rho^{-n} n^{\alpha}$ mit dem Exponenten $\alpha$ der Singularität.
+**Wachstumsrate und Exponent.** Hat die erzeugende Funktion $F(z) = \sum c_n z^n$ mit nichtnegativen Koeffizienten die nächste Singularität bei $\rho > 0$, so wächst $c_n$ wie $\rho^{-n}$ (bis auf subexponentielle Faktoren), und bei einer einzigen dominanten Singularität vom Wurzel- oder Poltyp gilt $c_n \approx A\, \rho^{-n} n^{\alpha}$ mit dem Exponenten $\alpha$ der Singularität.
 
 **Transfersatz.** $[z^n]\,(1 - z/\rho)^{-a} = \rho^{-n}\, \dfrac{\Gamma(n+a)}{\Gamma(n+1)\,\Gamma(a)} = \rho^{-n}\, \dfrac{n^{a-1}}{\Gamma(a)} \Big(1 + \dfrac{a(a-1)}{2n} + O(n^{-2})\Big)$. Für $a = -\tfrac12$ (Wurzel) ist $\Gamma(-\tfrac12) = -2\sqrt{\pi}$ und der Koeffizient von $-\sqrt{1 - z/\rho}$ ist $\dfrac{\rho^{-n}}{2\sqrt{\pi}\, n^{3/2}}$.
 
